@@ -4,8 +4,8 @@
 You must have npm and bower installed
 
 Then run
-    npm install
-    bower install
+    `npm install`
+    `bower install`
 
 Check `grunt help` for development options
 
