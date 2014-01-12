@@ -44,6 +44,10 @@ module.exports = function (grunt) {
             file: {
                 path: 'src/index.html',
                 app: 'google-chrome'
+            },
+            release: {
+                path: 'http://pieces029.github.io/Dagger-Presentation',
+                app: 'google-chrome'
             }
         },
         htmllint: {
@@ -62,7 +66,13 @@ module.exports = function (grunt) {
             }
         },
         clean: {
-            build: ["dist"]
+            build: [
+                "dist/css",
+                "dist/fonts",
+                "dist/images",
+                "dist/lib",
+                "dist/index.html"
+            ]
         },
         copy: {
             release: {
@@ -100,8 +110,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-github-pages');
     grunt.loadNpmTasks('grunt-concurrent');
-    grunt.loadNpmTasks('grunt-clean');
     grunt.loadNpmTasks('grunt-open');
     grunt.loadNpmTasks('grunt-html');
 
@@ -123,6 +134,7 @@ module.exports = function (grunt) {
     grunt.registerTask('release', 'Creates the release build and publishes it to github pages',
         [
             'clean:build',
+            'imagemin',
             'copy:release',
             'deploy'
         ]
