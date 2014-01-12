@@ -1,4 +1,4 @@
-# Presentation project for GDC
+# Presentation project for GDG-TC
 
 ## How to use
 You must have npm and bower installed

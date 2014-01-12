@@ -30,7 +30,7 @@ module.exports = function (grunt) {
         },
         concurrent: {
             target: {
-                tasks: ['connect', 'watch', 'open:dev'],
+                tasks: ['connect', 'watch', 'open:connect'],
                 options: {
                     logConcurrentOutput: true
                 }
@@ -41,7 +41,7 @@ module.exports = function (grunt) {
                 path: 'http://127.0.0.1:8888',
                 app: 'google-chrome'
             },
-            dev: {
+            file: {
                 path: 'src/index.html',
                 app: 'google-chrome'
             }
@@ -60,16 +60,50 @@ module.exports = function (grunt) {
                     }
                 ]
             }
+        },
+        clean: {
+            build: ["dist"]
+        },
+        copy: {
+            release: {
+                expand: true,
+                cwd: 'src/',
+                src: '**',
+                dest: 'dist/',
+                options: {
+                    process: function (content, srcpath) {
+                        content = content.replace(
+                            "{ src: 'lib/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },",
+                            "{ src: 'lib/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }");
+
+                        return content.replace(
+                            "{ src: 'lib/reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }",
+                            ""
+                        );
+                    }
+                }
+            }
+        },
+        githubPages: {
+            target: {
+                options: {
+                    // The default commit message for the gh-pages branch
+                    commitMessage: 'pushing updates'
+                },
+                // The folder where your gh-pages repo is
+                src: 'dist'
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-concurrent');
+    grunt.loadNpmTasks('grunt-clean');
     grunt.loadNpmTasks('grunt-open');
     grunt.loadNpmTasks('grunt-html');
-
 
     // Default task
     grunt.registerTask('default', ['help']);
@@ -80,9 +114,19 @@ module.exports = function (grunt) {
         console.log("  connect:\tStart a local server for testing on port 8888");
         console.log("  dev:\tRuns all dev commands, if your are developing you want this");
         console.log("  open:connect\tOpens Google Chrome to the index page on port 8888");
-        console.log("  open:dev\tOpens the html file in chrome");
+        console.log("  open:file\tOpens the html file in chrome");
         console.log("  imagemin\tOptimize your images for the web");
     });
 
     grunt.registerTask('dev', 'Runs all dev commands, if your are developing you want this', 'concurrent:target');
+
+    grunt.registerTask('release', 'Creates the release build and publishes it to github pages',
+        [
+            'clean:build',
+            'copy:release',
+            'deploy'
+        ]
+    );
+
+    grunt.registerTask('deploy', ['githubPages:target']);
 };
