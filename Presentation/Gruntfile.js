@@ -79,7 +79,11 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: 'src/',
                 src: '**',
-                dest: 'dist/',
+                dest: 'dist/'
+            },
+            releaseReplace: {
+                src: 'dist/index.html',
+                dest: 'dist/index.html',
                 options: {
                     process: function (content, srcpath) {
                         content = content.replace(
@@ -136,6 +140,7 @@ module.exports = function (grunt) {
             'clean:build',
             'imagemin',
             'copy:release',
+            'copy:releaseReplace',
             'deploy'
         ]
     );
