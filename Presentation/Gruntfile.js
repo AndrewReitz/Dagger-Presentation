@@ -130,6 +130,7 @@ module.exports = function (grunt) {
         console.log("  dev:\tRuns all dev commands, if your are developing you want this");
         console.log("  open:connect\tOpens Google Chrome to the index page on port 8888");
         console.log("  open:file\tOpens the html file in chrome");
+        console.log("  open:release\tOpens the page in github pages");
         console.log("  imagemin\tOptimize your images for the web");
     });
 
