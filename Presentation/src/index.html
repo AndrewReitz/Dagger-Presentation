@@ -16,7 +16,7 @@
 
     <link rel="stylesheet" href="lib/reveal.js/css/reveal.min.css">
     <!-- Change this to the theme of your choice -->
-    <link rel="stylesheet" href="lib/reveal.js/css/theme/blood.css" id="blood">
+    <link rel="stylesheet" href="lib/reveal.js/css/theme/blood.css" id="default">
     <link rel="stylesheet" href="css/main.css">
 
     <!-- For syntax highlighting -->
@@ -37,23 +37,79 @@
     <div class="slides">
         <section>
             <h2>Andrew & Patrick Present</h2>
+
             <h1>Dagger</h1>
             <img src="image/dagger-large.png" alt="Dagger Icon">
+
             <h3>Not as Scary as you think</h3>
-            <aside class="notes">
-                Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-            </aside>
         </section>
         <section>
             <h1>Who we are</h1>
+
+            <h2>TOOD Place Image Here</h2>
+            <aside class="notes">
+                Talk about who we are and what we do
+            </aside>
         </section>
         <section>
             <h2>Presentation Overview</h2>
+            <ol>
+                <li>Intro to Dependency Injection</li>
+                <li>Dependency Injection in Android</li>
+                <li>How it works, a demo</li>
+            </ol>
+        </section>
+        <section>
+            <h2>Starting Off</h2>
+            <img src="http://farm5.staticflickr.com/4009/4540660002_521d66063a.jpg" alt="ninjas"/>
+
+            <h3>Dependency Injection</h3>
+            <aside class="notes">
+                How many people know what dependency injection is / and currently use it?
+                Ninjas, ninject, .nets
+            </aside>
+        </section>
+        <section><section>
+            <h2>A Bad Example</h2>
+<!-- KEEP THIS FORMATTING IT APPARENTLY MATTERS -->
+<pre><code data-trim contenteditable>
+public class Sword {
+    public void hit(String target) {
+        Log.d(String.format("Sword chopped %s in half", target));
+    }
+}
+</code></pre>
+        </section>
+        <section>
+<pre><code data-trim contenteditable>
+public class Ninja {
+    private final mSword;
+    public Ninja() {
+        mSword = new Sword;
+    }
+
+    public void attack(String target) {
+        mSword.hit(target);
+    }
+}
+</code></pre>
+        </section>
+        <section>
+<pre><code data-trim contenteditable>
+/* Inside of a terrible Activity.onCreate method */
+public void onCreate() {
+    Ninja ninja = new Ninja();
+    ninja.attack("zombie");
+}
+</code></pre>
+        <p>Output: Sword chopped zombie in half</p>
+        <aside class="notes">
             <ul>
-                <li>Intro to DI</li>
-                <li>DI in Android</li>
-                <li>How it works</li>
+                <li>As you probably expected chopped zombie in half, but what if we wanted to switch sword with something else?</li>
+                <li>This is a bad example of writing code. It violates the open close principle.</li>
             </ul>
+        </aside>
+        </section>
         </section>
     </div>
 
@@ -63,8 +119,8 @@
     <script>
 
         /** Configure it!! **/
-        // Full list of configuration options available here:
-        // https://github.com/hakimel/reveal.js#configuration
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
         Reveal.initialize({
             controls: true,
             progress: true,
@@ -76,13 +132,13 @@
 
             // Optional libraries used to extend on reveal.js
             dependencies: [
-                { src: 'lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-                { src: 'lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                { src: 'lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                { src: 'lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-                { src: 'lib/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-                { src: 'lib/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
-                { src: 'lib/reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                { src: 'lib/reveal.js/lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'lib/reveal.js/plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); }},
+                { src: 'lib/reveal.js/plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); }},
+                { src: 'lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); }},
+                { src: 'lib/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; }},
+                { src: 'lib/reveal.js/plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; }},
+                { src: 'lib/reveal.js/plugin/remotes/remotes.js', async: true, condition: function () { return !!document.body.classList; }}
             ]
         });
 
