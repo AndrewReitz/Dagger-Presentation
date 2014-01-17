@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>GDG-TC: Dagger - Not as Scary as you think</title>
+    <title>GDG-TC 2014: Dagger - Not as Scary as you think</title>
 
     <!-- Fill These Out -->
     <meta name="description" content="Presentation Name Here">
@@ -16,7 +16,7 @@
 
     <link rel="stylesheet" href="lib/reveal.js/css/reveal.min.css">
     <!-- Change this to the theme of your choice -->
-    <link rel="stylesheet" href="lib/reveal.js/css/theme/blood.css" id="default">
+    <link rel="stylesheet" href="css/theme/nerdery.css" id="default">
     <link rel="stylesheet" href="css/main.css">
 
     <!-- For syntax highlighting -->
@@ -35,18 +35,27 @@
 <div class="reveal">
     <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
+        <!-- BEGIN -->
+        <section>
+            <img src="images/logo.png" alt="Nerdery Logo"/>
+        </section>
         <section>
             <h2>Andrew & Patrick Present</h2>
 
-            <h1>Dagger</h1>
-            <img src="image/dagger-large.png" alt="Dagger Icon">
+            <h1><img src="images/dagger-medium.png" alt="Dagger Icon">Dagger<img src="images/dagger-medium.png" alt="Dagger Icon"></h1>
 
             <h3>Not as Scary as you think</h3>
         </section>
         <section>
             <h1>Who we are</h1>
-
-            <h2>TOOD Place Image Here</h2>
+            <div style="float:left; width:50%;">
+                <img src="images/vx.png" alt="Patrick" style="width: 450px" /><br>
+                Patrick
+            </div>
+            <div style="float:left; width:50%;">
+                <img src="images/rz.png" alt="Andrew" style="width: 450px" />
+                Andrew
+            </div>
             <aside class="notes">
                 Talk about who we are and what we do
             </aside>
@@ -61,7 +70,7 @@
         </section>
         <section>
             <h2>Starting Off</h2>
-            <img src="http://farm5.staticflickr.com/4009/4540660002_521d66063a.jpg" alt="ninjas"/>
+            <img src="images/ninjas.jpg" alt="ninjas"/>
 
             <h3>Dependency Injection</h3>
             <aside class="notes">
@@ -69,8 +78,9 @@
                 Ninjas, ninject, .nets
             </aside>
         </section>
-        <section><section>
-            <h2>A Bad Example</h2>
+        <section>
+            <section>
+            <h2>An Example</h2>
 <!-- KEEP THIS FORMATTING IT APPARENTLY MATTERS -->
 <pre><code data-trim contenteditable>
 public class Sword {
@@ -83,7 +93,7 @@ public class Sword {
         <section>
 <pre><code data-trim contenteditable>
 public class Ninja {
-    private final mSword;
+    private final Sword mSword;
     public Ninja() {
         mSword = new Sword;
     }
@@ -96,7 +106,7 @@ public class Ninja {
         </section>
         <section>
 <pre><code data-trim contenteditable>
-/* Inside of a terrible Activity.onCreate method */
+/* Inside of a Activity.onCreate method... */
 public void onCreate() {
     Ninja ninja = new Ninja();
     ninja.attack("zombie");
@@ -111,16 +121,107 @@ public void onCreate() {
         </aside>
         </section>
         </section>
+        <section>
+            <section>
+<pre><code data-trim contenteditable>
+public interface Weapon {
+    public void hit();
+}
+
+public class Sword implements Weapon {
+    @Override
+    public void hit() {
+        Log.d(String.format("Sword chopped %s in half", target));
+    }
+}
+</code></pre>
+            </section>
+            <section>
+<pre><code data-trim contenteditable>
+public class Ninja {
+    private final Weapon mWeapon;
+
+    public Ninja(Weapon weapon) {
+        mWeapon = weapon;
+    }
+
+    public void attack(String target) {
+        mSword.hit(target);
+    }
+}
+</code></pre>
+            </section>
+            <section>
+<pre><code data-trim contenteditable>
+/* Inside of a Activity.onCreate method... */
+public void onCreate() {
+    Weapon weapon = new Sword();
+    Ninja ninja = new Ninja(weapon);
+    ninja.attack("zombie");
+}
+</code></pre>
+                <p>Output: Sword chopped zombie in half</p>
+                <aside class="notes">
+                    <ul>
+                        <li>Output is the same but now if we create a new weapon we can switch it out without having an issue</li>
+                        <li>Show swapping out with Shuriken</li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+<pre><code data-trim contenteditable>
+public class Shuriken implements Weapon {
+    @Override
+    public void hit() {
+        Log.d(String.format("Shuriken stuck in %s's belly", target));
+    }
+}
+</code></pre>
+            </section>
+        </section>
+        <section>
+            <h2>What it looks like with Dagger</h2>
+<pre><code data-trim contenteditable>
+@Inject
+Ninja mNinja
+
+@Override
+public void onCreate() {
+    mNinja.attach("zombie");
+}
+</code></pre>
+            <aside id="notes">
+                How does this work? Well it's all wired up in dagger.  It can do the work for you.
+                So now you don't have to go through and wire all those pieces together.  It completly removed my need to
+                care about the Ninja.  I just say I want one so give me one.  We will go into details more about how it
+                works later but lets first talk a little more about dagger.
+            </aside>
+        </section>
+        <section>
+            <h1>History</h1>
+            <h2>Guice, Hibernate, Etc where dagger came from</h2>
+        </section>
+        <section>
+            <h1>Why Dagger</h1>
+            <h2>speed and stuff</h2>
+        </section>
+        <section>
+            <h1>More Dagger Stuff</h1>
+        </section>
+        <section>
+            <h1>Demo Time!</h1>
+            <h2>Talk about each piece and how it's made up</h2>
+        </section>
+        <!-- END -->
+        <section>
+            <img src="images/logo.png" alt="Nerdery Logo"/>
+        </section>
     </div>
 
     <script src="lib/reveal.js/lib/js/head.min.js"></script>
     <script src="lib/reveal.js/js/reveal.min.js"></script>
 
     <script>
-
-        /** Configure it!! **/
-            // Full list of configuration options available here:
-            // https://github.com/hakimel/reveal.js#configuration
         Reveal.initialize({
             controls: true,
             progress: true,
