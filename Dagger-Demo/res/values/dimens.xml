@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_layout_padding">16dp</dimen>
+    <dimen name="default_layout_padding_half">8dp</dimen>
+    <dimen name="default_layout_margin">@dimen/default_layout_padding</dimen>
+    <dimen name="default_layout_margin_half">@dimen/default_layout_padding_half</dimen>
+
+    <!-- Add Other Dimensions Here -->
+</resources>
