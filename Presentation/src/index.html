@@ -36,13 +36,18 @@
     <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
         <!-- BEGIN -->
+        <!-- INTRO -->
         <section>
             <img src="images/logo.png" alt="Nerdery Logo"/>
         </section>
         <section>
             <h2>Andrew & Patrick Present</h2>
 
-            <h1><img src="images/dagger-medium.png" alt="Dagger Icon">Dagger<img src="images/dagger-medium.png" alt="Dagger Icon"></h1>
+            <h1>
+                <img src="images/dagger-medium.png" alt="Dagger Icon">
+                Dagger
+                <img src="images/dagger-medium.png" alt="Dagger Icon">
+            </h1>
 
             <h3>Not as Scary as you think</h3>
         </section>
@@ -63,11 +68,27 @@
         <section>
             <h2>Presentation Overview</h2>
             <ol>
-                <li>Intro to Dependency Injection</li>
                 <li>Dependency Injection in Android</li>
+                <li>Intro to Dependency Injection</li>
                 <li>How it works, a demo</li>
             </ol>
         </section>
+        <!-- INTRO -->
+        <!-- DI IN ANDROID -->
+        <!-- TODO Patrick fill this out / this is your section! -->
+        <section>
+            <h1>History</h1>
+            <h2>Guice, Hibernate, Etc where dagger came from</h2>
+        </section>
+        <section>
+            <h1>Why Dagger</h1>
+            <h2>speed and stuff</h2>
+        </section>
+        <section>
+            <h1>More Dagger Stuff</h1>
+        </section>
+        <!-- END DI IN ANDROID -->
+        <!-- INTRO TO DI -->
         <section>
             <h2>Starting Off</h2>
             <img src="images/ninjas.jpg" alt="ninjas"/>
@@ -187,26 +208,54 @@ Ninja mNinja
 
 @Override
 public void onCreate() {
-    mNinja.attach("zombie");
+    mNinja.attack("zombie");
 }
 </code></pre>
-            <aside id="notes">
+            <aside class="notes">
                 How does this work? Well it's all wired up in dagger.  It can do the work for you.
                 So now you don't have to go through and wire all those pieces together.  It completly removed my need to
                 care about the Ninja.  I just say I want one so give me one.  We will go into details more about how it
                 works later but lets first talk a little more about dagger.
             </aside>
         </section>
+        <!-- INTRO TO DI -->
+        <!-- HOW TO USE DAGGER -->
         <section>
-            <h1>History</h1>
-            <h2>Guice, Hibernate, Etc where dagger came from</h2>
+            <h2>
+                <img src="images/dagger-small.png" alt="Dagger Icon">
+                Pieces
+                <img src="images/dagger-small.png" alt="Dagger Icon">
+            </h2>
+            <h1>Made up of 3</h1>
+            <ol>
+                <li>Declare Dependencies</li>
+                <li>Satisfy Dependencies</li>
+                <li>Build the Graph</li>
+            </ol>
+            <aside class="notes">
+                Dagger is simple, after you get use to it.  My goal is for you to come out of this presentation
+                knowing how to use it.  I spent a lot of time my first time using it and I don't want that to be your
+                experience.
+            </aside>
         </section>
         <section>
-            <h1>Why Dagger</h1>
-            <h2>speed and stuff</h2>
+            <h2>1: Declare Dependencies</h2>
+<pre><code data-trim contenteditable>
+// MainActivity.java
+@Inject
+Ninja mNinja
+
+@Override
+public void onCreate() {
+    mNinja.attack("pirate");
+}
+</code></pre>
         </section>
         <section>
-            <h1>More Dagger Stuff</h1>
+            <h2>2: Satisfy Dependencies</h2>
+<pre><code data-trim contenteditable>
+
+</code></pre>
         </section>
         <section>
             <h1>Demo Time!</h1>
