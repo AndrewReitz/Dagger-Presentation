@@ -2,8 +2,6 @@ package com.andrewreitz.demo.dependencyinjection.modules;
 
 import com.andrewreitz.demo.DaggerDemoApplication;
 import com.andrewreitz.demo.dependencyinjection.annotations.ForApplication;
-import com.andrewreitz.demo.logging.LogCatLogger;
-import com.andrewreitz.demo.logging.Logger;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -52,11 +50,5 @@ public class AndroidModule {
     @Singleton
     SharedPreferences provideSharedPreferences() {
         return mApplication.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
-    }
-
-    @Provides
-    @Singleton
-    Logger provideLoggingService() {
-        return new LogCatLogger(mApplication);
     }
 }

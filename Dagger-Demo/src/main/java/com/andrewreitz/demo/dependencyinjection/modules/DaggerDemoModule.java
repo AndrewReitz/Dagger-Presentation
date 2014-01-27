@@ -9,7 +9,6 @@ import dagger.Module;
         includes = {
                 AndroidModule.class,
                 ActivityModule.class
-                /* ADD MORE MODULES HERE FOR CHECKING */
         }
 )
 public class DaggerDemoModule {

@@ -146,12 +146,12 @@ public void onCreate() {
             <section>
 <pre><code data-trim contenteditable>
 public interface Weapon {
-    public void hit();
+    public void hit(String target);
 }
 
 public class Sword implements Weapon {
     @Override
-    public void hit() {
+    public void hit(String target) {
         Log.d(String.format("Sword chopped %s in half", target));
     }
 }
@@ -167,7 +167,7 @@ public class Ninja {
     }
 
     public void attack(String target) {
-        mSword.hit(target);
+        mWeapon.hit(target);
     }
 }
 </code></pre>
@@ -193,7 +193,7 @@ public void onCreate() {
 <pre><code data-trim contenteditable>
 public class Shuriken implements Weapon {
     @Override
-    public void hit() {
+    public void hit(String target) {
         Log.d(String.format("Shuriken stuck in %s's belly", target));
     }
 }
@@ -254,7 +254,14 @@ public void onCreate() {
         <section>
             <h2>2: Satisfy Dependencies</h2>
 <pre><code data-trim contenteditable>
-
+@Provides
+Weapon provideSword() {
+    return new Sword();
+}
+@Provides
+Ninja provideNinja(@Named("Sword") Weapon weapon) {
+    return new Ninja(weapon);
+}
 </code></pre>
         </section>
         <section>

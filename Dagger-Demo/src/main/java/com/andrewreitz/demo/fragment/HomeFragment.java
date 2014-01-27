@@ -1,8 +1,8 @@
 package com.andrewreitz.demo.fragment;
 
 import com.andrewreitz.demo.R;
-import com.andrewreitz.demo.logging.Logger;
 import com.andrewreitz.demo.activity.BaseActivity;
+import com.andrewreitz.demo.dojo.Samurai;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 public class HomeFragment extends BaseFragment {
 
     @Inject
-    Logger mLogger;
+    Samurai mSamurai;
 
     @Override
     public View onCreateView(
@@ -27,6 +27,8 @@ public class HomeFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.inject(this, view);
         ((BaseActivity) getActivity()).inject(this);
+
+        mSamurai.attack("Zombie");
 
         return view;
     }
