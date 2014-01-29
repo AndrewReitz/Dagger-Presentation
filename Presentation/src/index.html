@@ -80,20 +80,20 @@
             <h1>History</h1>
             <h2>Guice, Hibernate, Etc where dagger came from</h2>
         </section>
-        <section>
+        <section> <!-- TODO Patrick -->
             <h1>Why Dagger</h1>
             <h2>speed and stuff</h2>
         </section>
-        <section>
+        <section> <!-- TODO Patrick -->
             <h1>More Dagger Stuff</h1>
         </section>
         <!-- END DI IN ANDROID -->
         <!-- INTRO TO DI -->
         <section>
-            <h2>Starting Off</h2>
+            <h2>Dependency Injection</h2>
             <img src="images/ninjas.jpg" alt="ninjas"/>
 
-            <h3>Dependency Injection</h3>
+            <h3>Intro</h3>
             <aside class="notes">
                 How many people know what dependency injection is / and currently use it?
                 Ninjas, ninject, .nets
@@ -241,7 +241,7 @@ public void onCreate() {
         <section>
             <h2>1: Declare Dependencies</h2>
 <pre><code data-trim contenteditable>
-// MainActivity.java
+/** MainActivity.java */
 @Inject
 Ninja mNinja
 
@@ -254,19 +254,30 @@ public void onCreate() {
         <section>
             <h2>2: Satisfy Dependencies</h2>
 <pre><code data-trim contenteditable>
+/** AndroidModule.java */
 @Provides
 Weapon provideSword() {
     return new Sword();
 }
 @Provides
-Ninja provideNinja(@Named("Sword") Weapon weapon) {
+Ninja provideNinja(Weapon weapon) {
     return new Ninja(weapon);
 }
 </code></pre>
         </section>
         <section>
+            <h2>3: Build the Graph</h2>
+<pre><code data-trim contenteditable>
+/** Application.java */
+ObjectGraph.create(AndroidModule.class);
+</code></pre>
+        </section>
+        <section>
             <h1>Demo Time!</h1>
-            <h2>Talk about each piece and how it's made up</h2>
+            <aside class="notes">Talk about each piece and how it's made up</aside>
+        </section>
+        <section>
+            <h1>Questions</h1>
         </section>
         <!-- END -->
         <section>
