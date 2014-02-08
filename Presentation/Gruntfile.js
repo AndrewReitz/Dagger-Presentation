@@ -79,7 +79,11 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: 'src/',
                 src: '**',
-                dest: 'dist/',
+                dest: 'dist/'
+            },
+            releaseReplace: { // Done this way instead of with regular copy is it screws up the image files that are being copied over
+                src: 'dist/index.html',
+                dest: 'dist/index.html',
                 options: {
                     process: function (content, srcpath) {
                         return content.replace(
@@ -133,6 +137,7 @@ module.exports = function (grunt) {
             'clean:build',
             'imagemin',
             'copy:release',
+            'copy:releaseReplace',
             'deploy'
         ]
     );
