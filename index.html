@@ -68,8 +68,8 @@
         <section>
             <h2>Presentation Overview</h2>
             <ol>
-                <li>Intro to Dependency Injection</li>
                 <li>Dependency Injection in Android</li>
+                <li>Intro to Dependency Injection</li>
                 <li>How it works, a demo</li>
             </ol>
         </section>
@@ -78,21 +78,15 @@
         <section>
             <h1>About You?</h1>
             <ol>
-                <li>Developers?</li>
+                <li>Devleopers?</li>
                 <li>Familiar with Dependency Injection?</li>
                 <li>Familiar with Guice?</li>
             </ol>
-            <aside class="notes">
-                First off, a few questions for you.
-            </aside>
         </section>
         <section>
             <h1>History</h1>
-            <h2>Guice, Spring, Etc where dagger came from</h2>
+            <h2>Guice, Hibernate, Etc where dagger came from</h2>
         </section>
-            <aside class="notes">
-                We'll start with a little history.
-            </aside>
         <section>
             <h2>Contributors</h2>
             <ol>
@@ -100,9 +94,6 @@
                 <li>Christian Gruber</li>
                 <li>Jesse Wilson</li>
             </ol>
-            <aside class="notes">
-                Let's look at some of the early contributors. This is largely an effort by Google and Square so far.
-            </aside>
         </section>
         <section>
             <h2>Dependency Injection</h2>
@@ -135,9 +126,6 @@
                     <li>Guice</li>
                     <li>Dagger</li>
                 </ol>
-                <aside class="notes">
-                    Before I move on to what "speed and stuff" means, let's look at how it evolved a little bit.
-                </aside>
             </section>
             <section>
                 <h2>Android is different</h2>
@@ -146,9 +134,6 @@
                     <li>Diversity of devices</li>
                     <li>Frequency of startup</li>
                 </ol>
-                <aside class="notes">
-                    This requires some carefully thought out trade-offs in design. Hence why Dagger was built from the ground up.
-                </aside>
             </section>
             <section>
                 <h2>"speed and stuff" = </h2>
@@ -198,9 +183,9 @@
         <section>
             <h2>Simple Syntax</h2>
             <ol>
-                <li>@Module</li>
-                <li>@Provides</li>
-                <li>@Inject</li>
+                <li>@module</li>
+                <li>@provides</li>
+                <li>@inject</li>
                 <li>That's pretty much it.</li>
                 <li>No xml, config files, etc.</li>
                 <li>I'll let Andrew explain how it works.</li>
@@ -256,7 +241,7 @@ public void onCreate() {
         <aside class="notes">
             <ul>
                 <li>As you probably expected chopped zombie in half, but what if we wanted to switch sword with something else?</li>
-                <li>This is a bad example of writing code.</li>
+                <li>This is a bad example of writing code. It violates the open close principle.</li>
             </ul>
         </aside>
         </section>
@@ -425,7 +410,7 @@ ObjectGraph.create(AndroidModule.class);
                 { src: 'lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); }},
                 { src: 'lib/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; }},
                 { src: 'lib/reveal.js/plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; }},
-                { src: 'lib/reveal.js/plugin/remotes/remotes.js', async: true, condition: function () { return !!document.body.classList; }}
+                
             ]
         });
 
