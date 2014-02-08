@@ -79,19 +79,11 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: 'src/',
                 src: '**',
-                dest: 'dist/'
-            },
-            releaseReplace: {
-                src: 'dist/index.html',
-                dest: 'dist/index.html',
+                dest: 'dist/',
                 options: {
                     process: function (content, srcpath) {
-                        content = content.replace(
-                            "{ src: 'lib/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },",
-                            "{ src: 'lib/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }");
-
                         return content.replace(
-                            "{ src: 'lib/reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }",
+                            "{ src: 'lib/reveal.js/plugin/remotes/remotes.js', async: true, condition: function () { return !!document.body.classList; }}",
                             ""
                         );
                     }
@@ -141,7 +133,6 @@ module.exports = function (grunt) {
             'clean:build',
             'imagemin',
             'copy:release',
-            'copy:releaseReplace',
             'deploy'
         ]
     );
