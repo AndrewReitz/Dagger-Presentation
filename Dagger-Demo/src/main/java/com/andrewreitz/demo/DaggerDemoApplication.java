@@ -58,7 +58,7 @@ public class DaggerDemoApplication extends Application {
     /**
      * Creates a list containing all the modules required for dagger
      */
-    private List<Object> getModules() {
+    protected List<Object> getModules() {
         return Arrays.<Object>asList(
                 new AndroidModule(this)
         );
